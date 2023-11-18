@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import Cute.Dock 1.0
-import CuteUI 1.0 as CuteUI
+import Lingmo.Dock 1.0
+import LingmoUI 1.0 as LingmoUI
 
 DockItem {
     id: appItem
@@ -33,7 +33,7 @@ DockItem {
 
     onPositionChanged: updateGeometry()
     onPressed: updateGeometry()
-    onRightClicked: if (model.appId !== "cute-launcher") contextMenu.show()
+    onRightClicked: if (model.appId !== "lingmo-launcher") contextMenu.show()
 
     onClicked: {
         if (mouse.button === Qt.LeftButton)
@@ -69,7 +69,7 @@ DockItem {
         }
     }
 
-    CuteUI.DesktopMenu {
+    LingmoUI.DesktopMenu {
         id: contextMenu
 
         MenuItem {

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2021 LingmoOS Team.
  *
  * Author:     rekols <revenmartin@gmail.com>
  *
@@ -33,13 +33,13 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     QApplication app(argc, argv);
 
-    if (!QDBusConnection::sessionBus().registerService("com.cute.Dock")) {
+    if (!QDBusConnection::sessionBus().registerService("com.lingmo.Dock")) {
         return -1;
     }
 
-    qmlRegisterType<DockSettings>("Cute.Dock", 1, 0, "DockSettings");
+    qmlRegisterType<DockSettings>("Lingmo.Dock", 1, 0, "DockSettings");
 
-    QString qmFilePath = QString("%1/%2.qm").arg("/usr/share/cute-dock/translations/").arg(QLocale::system().name());
+    QString qmFilePath = QString("%1/%2.qm").arg("/usr/share/lingmo-dock/translations/").arg(QLocale::system().name());
     if (QFile::exists(qmFilePath)) {
         QTranslator *translator = new QTranslator(QApplication::instance());
         if (translator->load(qmFilePath)) {

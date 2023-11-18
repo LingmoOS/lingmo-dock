@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(PROJECT_NAME cute-dock)
+set(PROJECT_NAME lingmo-dock)
 project(${PROJECT_NAME})
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -37,7 +37,7 @@ set(RESOURCES
 )
 
 qt5_add_dbus_adaptor(DBUS_SOURCES
-                     src/com.cute.Dock.xml
+                     src/com.lingmo.Dock.xml
                      src/mainwindow.h MainWindow)
 set_source_files_properties(${DBUS_SOURCES} PROPERTIES SKIP_AUTOGEN ON)
 
@@ -60,4 +60,4 @@ add_dependencies(${PROJECT_NAME} translations)
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${QM_FILES} DESTINATION /usr/share/${PROJECT_NAME}/translations)
-install(FILES cute-dock-list.conf DESTINATION /etc)
+install(FILES lingmo-dock-list.conf DESTINATION /etc)

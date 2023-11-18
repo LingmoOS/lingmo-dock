@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2021 LingmoOS Team.
  * Author:     rekols <revenmartin@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,17 +45,17 @@ void TrashManager::moveToTrash(QList<QUrl> urls)
         paths.append(url.toLocalFile());
     }
 
-    QProcess::startDetached("cute-filemanager", QStringList() << "--move-to-trash" << paths);
+    QProcess::startDetached("lingmo-filemanager", QStringList() << "--move-to-trash" << paths);
 }
 
 void TrashManager::emptyTrash()
 {
-    QProcess::startDetached("cute-filemanager", QStringList() << "-e");
+    QProcess::startDetached("lingmo-filemanager", QStringList() << "-e");
 }
 
 void TrashManager::openTrash()
 {
-    QProcess::startDetached("cute-filemanager", QStringList() << "trash:///");
+    QProcess::startDetached("lingmo-filemanager", QStringList() << "trash:///");
 }
 
 void TrashManager::onDirectoryChanged()

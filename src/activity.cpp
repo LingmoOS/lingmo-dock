@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2021 LingmoOS Team.
  *
  * Author:     Reion Wong <reionwong@gmail.com>
  *
@@ -60,7 +60,7 @@ void Activity::onActiveWindowChanged()
                      NET::WMState | NET::WMVisibleName,
                      NET::WM2WindowClass);
 
-    bool launchPad = info.windowClassClass() == "cute-launcher";
+    bool launchPad = info.windowClassClass() == "lingmo-launcher";
 
     if (DockSettings::self()->visibility() == DockSettings::IntellHide) {
         bool existsWindowMaximized = false;

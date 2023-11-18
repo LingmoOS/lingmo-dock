@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2021 LingmoOS Team.
  *
  * Author:     rekols <revenmartin@gmail.com>
  *
@@ -29,9 +29,9 @@ ProcessProvider::ProcessProvider(QObject *parent)
 
 bool ProcessProvider::startDetached(const QString &exec, QStringList args)
 {
-    QDBusInterface iface("com.cute.Session",
+    QDBusInterface iface("com.lingmo.Session",
                          "/Session",
-                         "com.cute.Session", QDBusConnection::sessionBus());
+                         "com.lingmo.Session", QDBusConnection::sessionBus());
 
     if (iface.isValid()) {
         iface.asyncCall("launch", exec, args).waitForFinished();

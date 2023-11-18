@@ -1,6 +1,6 @@
 # Dock
 
-CuteOS application dock.
+LingmoOS application dock.
 
 ## Dependencies
 
@@ -8,7 +8,7 @@ CuteOS application dock.
 sudo pacman -S gcc cmake qt5-base qt5-quickcontrols2 kwindowsystem
 ```
 
-You also need [`fishui`](https://github.com/cuteos/fishui) and [`libcute`](https://github.com/cuteos/libcute).
+You also need [`fishui`](https://github.com/lingmoos/fishui) and [`liblingmo`](https://github.com/lingmoos/liblingmo).
 
 ## Build and Install
 

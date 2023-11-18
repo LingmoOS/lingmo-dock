@@ -1,8 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
-import Cute.Dock 1.0
-import CuteUI 1.0 as CuteUI
+import Lingmo.Dock 1.0
+import LingmoUI 1.0 as LingmoUI
 
 Item {
     id: control
@@ -54,7 +54,7 @@ Item {
         dragStarted = false
     }
 
-    CuteUI.IconItem {
+    LingmoUI.IconItem {
         id: icon
         anchors.centerIn: parent
         width: control.iconSize
@@ -124,14 +124,14 @@ Item {
                 popupTips.popupText = control.popupText
 
                 if (Settings.direction === DockSettings.Left)
-                    popupTips.position = Qt.point(root.width + CuteUI.Units.largeSpacing,
+                    popupTips.position = Qt.point(root.width + LingmoUI.Units.largeSpacing,
                                                   control.mapToGlobal(0, 0).y + (control.height / 2 - popupTips.height / 2))
                 else if (Settings.direction === DockSettings.Right)
-                    popupTips.position = Qt.point(control.mapToGlobal(0, 0).x - popupTips.width - CuteUI.Units.smallSpacing / 2,
+                    popupTips.position = Qt.point(control.mapToGlobal(0, 0).x - popupTips.width - LingmoUI.Units.smallSpacing / 2,
                                                   control.mapToGlobal(0, 0).y + (control.height / 2 - popupTips.height / 2))
                 else
                     popupTips.position = Qt.point(control.mapToGlobal(0, 0).x + (control.width / 2 - popupTips.width / 2),
-                                                  control.mapToGlobal(0, 0).y - popupTips.height - CuteUI.Units.smallSpacing)
+                                                  control.mapToGlobal(0, 0).y - popupTips.height - LingmoUI.Units.smallSpacing)
 
                 popupTips.show()
             } else {
@@ -159,7 +159,7 @@ Item {
         height: !isBottom ? (isActive ? activeLength : circleSize) : circleSize
         radius: !isBottom ? width / 2 : height / 2
         visible: enableActivateDot && !dragStarted
-        color: CuteUI.Theme.textColor
+        color: LingmoUI.Theme.textColor
 
         x: isLeft ? leftX : isBottom ? bottomX : rightX
         y: isLeft ? leftY : isBottom ? bottomY : rightY

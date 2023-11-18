@@ -3,8 +3,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.0
 
-import Cute.Dock 1.0
-import CuteUI 1.0 as CuteUI
+import Lingmo.Dock 1.0
+import LingmoUI 1.0 as LingmoUI
 
 Item {
     id: root
@@ -27,17 +27,20 @@ Item {
     Rectangle {
         id: _background
 
-        property var borderColor: root.compositing ? CuteUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.3)
-                                                                           : Qt.rgba(0, 0, 0, 0.2) : CuteUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.15)
+        property var borderColor: root.compositing ? LingmoUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.3)
+                                                                           : Qt.rgba(0, 0, 0, 0.2) : LingmoUI.Theme.darkMode ? Qt.rgba(255, 255, 255, 0.15)
                                                                                                                            : Qt.rgba(0, 0, 0, 0.15)
 
         anchors.fill: parent
         radius: root.compositing && Settings.style === 0 ? windowRadius : 0
-        color: CuteUI.Theme.darkMode ? "#666666" : "#E6E6E6"
-        opacity: root.compositing ? CuteUI.Theme.darkMode ? 0.5 : 0.5 : 0.9
+        color: LingmoUI.Theme.darkMode ? "#333333" : "#F2F2F2"
+        opacity: LingmoUI.Theme.darkMode ? 0.5 : 0.4
+        // opacity: windowHelper.compositing ? LingmoUI.Theme.darkMode ? 0.5 : 0.4 : 1
+        // color: LingmoUI.Theme.darkMode ? "#666666" : "#E6E6E6"
+        // opacity: root.compositing ? LingmoUI.Theme.darkMode ? 0.5 : 0.5 : 0.9
         // opacity: 0.8
-        border.width: 1 / CuteUI.Units.devicePixelRatio
-        border.pixelAligned: CuteUI.Units.devicePixelRatio > 1 ? false : true
+        border.width: 1 / LingmoUI.Units.devicePixelRatio
+        border.pixelAligned: LingmoUI.Units.devicePixelRatio > 1 ? false : true
         border.color: borderColor
 
         Behavior on color {
@@ -48,25 +51,25 @@ Item {
         }
     }
 
-    CuteUI.WindowHelper {
+    LingmoUI.WindowHelper {
         id: windowHelper
     }
 
-    CuteUI.WindowShadow {
+    LingmoUI.WindowShadow {
         view: mainWindow
         geometry: Qt.rect(root.x, root.y, root.width, root.height)
         strength: 1
         radius: _background.radius
     }
 
-    CuteUI.WindowBlur {
+    LingmoUI.WindowBlur {
         view: mainWindow
         geometry: Qt.rect(root.x, root.y, root.width, root.height)
         windowRadius: _background.radius
         enabled: true
     }
 
-    CuteUI.PopupTips {
+    LingmoUI.PopupTips {
         id: popupTips
         backgroundColor: _background.color
         blurEnabled: false
@@ -114,7 +117,7 @@ Item {
             implicitHeight: isHorizontal ? root.height : root.width
             popupText: qsTr("Trash")
             enableActivateDot: false
-            iconName: trash.count === 0 ? "user-trash" : "user-trash-full-2"
+            iconName: trash.count === 0 ? "user-trash" : "user-trash-full"
             onClicked: trash.openTrash()
             onRightClicked: trashMenu.popup()
 
@@ -128,12 +131,12 @@ Item {
 
             Rectangle {
                 anchors.fill: parent
-                anchors.margins: CuteUI.Units.smallSpacing / 2
+                anchors.margins: LingmoUI.Units.smallSpacing / 2
                 color: "transparent"
-                border.color: CuteUI.Theme.textColor
+                border.color: LingmoUI.Theme.textColor
                 radius: height * 0.3
-                border.width: 1 / CuteUI.Units.devicePixelRatio
-                border.pixelAligned: CuteUI.Units.devicePixelRatio > 1 ? false : true
+                border.width: 1 / LingmoUI.Units.devicePixelRatio
+                border.pixelAligned: LingmoUI.Units.devicePixelRatio > 1 ? false : true
                 opacity: trashItem.dropArea.containsDrag ? 0.5 : 0
 
                 Behavior on opacity {
@@ -143,7 +146,7 @@ Item {
                 }
             }
 
-            CuteUI.DesktopMenu {
+            LingmoUI.DesktopMenu {
                 id: trashMenu
 
                 MenuItem {
@@ -154,7 +157,7 @@ Item {
                 MenuItem {
                     text: qsTr("Empty Trash")
                     onTriggered: trash.emptyTrash()
-                    visible: trash.count !== 0
+                    // visible: trash.count !== 0
                 }
             }
         }

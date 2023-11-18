@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (C) 2021 CuteOS Team.
+ * Copyright (C) 2021 LingmoOS Team.
  *
  * Author:     rekols <revenmartin@gmail.com>
  *
@@ -346,17 +346,17 @@ int ApplicationModel::indexOf(const QString &id)
 
 void ApplicationModel::initPinnedApplications()
 {
-    QSettings settings(QSettings::UserScope, "cuteos", "dock_pinned");
-    QSettings systemSettings("/etc/cute-dock-list.conf", QSettings::IniFormat);
+    QSettings settings(QSettings::UserScope, "lingmoos", "dock_pinned");
+    QSettings systemSettings("/etc/lingmo-dock-list.conf", QSettings::IniFormat);
     QSettings *set = (QFile(settings.fileName()).exists()) ? &settings
                                                            : &systemSettings;
     QStringList groups = set->childGroups();
 
     // Launcher
     ApplicationItem *item = new ApplicationItem;
-    item->id = "cute-launcher";
-    item->exec = "cute-launcher";
-    item->iconName = "qrc:/images/launcher.svg";
+    item->id = "lingmo-launcher";
+    item->exec = "lingmo-launcher";
+    item->iconName = "qrc:/images/launchpad.svg";
     item->visibleName = tr("Launcher");
     item->fixed = true;
     m_appItems.append(item);
@@ -415,7 +415,7 @@ void ApplicationModel::initPinnedApplications()
 
 void ApplicationModel::savePinAndUnPinList()
 {
-    QSettings settings(QSettings::UserScope, "cuteos", "dock_pinned");
+    QSettings settings(QSettings::UserScope, "lingmoos", "dock_pinned");
     settings.clear();
 
     int index = 0;
@@ -454,7 +454,7 @@ void ApplicationModel::onWindowAdded(quint64 wid)
     const QString id = info.value("id").toString();
 
     // Skip...
-    if (id == "cute-launcher")
+    if (id == "lingmo-launcher")
         return;
 
     QString desktopPath = m_iface->desktopFilePath(wid);
