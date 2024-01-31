@@ -33,10 +33,10 @@ Item {
 
         anchors.fill: parent
         radius: root.compositing && Settings.style === 0 ? windowRadius : 0
-        color: LingmoUI.Theme.darkMode ? "#333333" : "#F2F2F2"
-        opacity: LingmoUI.Theme.darkMode ? 0.5 : 0.4
-        // opacity: windowHelper.compositing ? LingmoUI.Theme.darkMode ? 0.5 : 0.4 : 1
-        // color: LingmoUI.Theme.darkMode ? "#666666" : "#E6E6E6"
+        // color: LingmoUI.Theme.darkMode ? "#333333" : "#F2F2F2"
+        // opacity: LingmoUI.Theme.darkMode ? 0.5 : 0.4
+        opacity: windowHelper.compositing ? LingmoUI.Theme.darkMode ? 0.5 : 0.4 : 1
+        color: LingmoUI.Theme.darkMode ? "#666666" : "#E6E6E6"
         // opacity: root.compositing ? LingmoUI.Theme.darkMode ? 0.5 : 0.5 : 0.9
         // opacity: 0.8
         border.width: 1 / LingmoUI.Units.devicePixelRatio
@@ -110,6 +110,8 @@ Item {
                 }
             }
         }
+
+        HorizontalDivider {}
 
         DockItem {
             id: trashItem
