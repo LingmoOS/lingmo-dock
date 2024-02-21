@@ -8,7 +8,7 @@ LingmoOS application dock.
 sudo pacman -S gcc cmake qt5-base qt5-quickcontrols2 kwindowsystem
 ```
 
-You also need [`fishui`](https://github.com/lingmoos/fishui) and [`liblingmo`](https://github.com/lingmoos/liblingmo).
+You also need [`LingmoUI`](https://github.com/LingmoOS/lingmoui) and [`liblingmo`](https://github.com/lingmoos/liblingmo).
 
 ## Build and Install
 
