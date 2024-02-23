@@ -3,7 +3,6 @@
         <file>qml/main.qml</file>
         <file>qml/DockItem.qml</file>
         <file>qml/AppItem.qml</file>
-        <file>qml/HorizontalDivider.qml</file>
         <file>images/launchpad.svg</file>
         <file>images/rocket.svg</file>
         <file>images/rocket.png</file>

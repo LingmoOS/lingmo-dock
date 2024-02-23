@@ -111,8 +111,6 @@ Item {
             }
         }
 
-        HorizontalDivider {}
-
         DockItem {
             id: trashItem
             implicitWidth: isHorizontal ? root.height : root.width

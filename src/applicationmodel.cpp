@@ -356,7 +356,7 @@ void ApplicationModel::initPinnedApplications()
     ApplicationItem *item = new ApplicationItem;
     item->id = "lingmo-launcher";
     item->exec = "lingmo-launcher";
-    item->iconName = "qrc:/images/launchpad.svg";
+    item->iconName = "qrc:/images/rocket.svg";
     item->visibleName = tr("Launcher");
     item->fixed = true;
     m_appItems.append(item);
