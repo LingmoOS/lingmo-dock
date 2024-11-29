@@ -63,6 +63,31 @@ Item {
 
         visible: !dragStarted
 
+        layer.enabled: true
+        layer.smooth: true
+
+        transform: Scale {
+            id: iconScale
+            origin.x: icon.width / 2
+            origin.y: icon.height / 2
+            xScale: 1.0
+            yScale: 1.0
+
+            // 定义缩放变换的动画行为
+            Behavior on xScale {
+                NumberAnimation {
+                    duration: 200
+                    easing.type: Easing.OutQuad
+                }
+            }
+            Behavior on yScale {
+                NumberAnimation {
+                    duration: 200
+                    easing.type: Easing.OutQuad
+                }
+            }
+        }
+
         ColorOverlay {
             id: iconColorize
             anchors.fill: icon
@@ -86,7 +111,24 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         drag.axis: Drag.XAndYAxis
 
+        // 处理鼠标悬停事件
+        onEntered: {
+            // 放大图标
+            iconScale.xScale = 1.23
+            iconScale.yScale = 1.23
+        }
+
+        onExited: {
+            // 恢复图标大小
+            iconScale.xScale = 1.0
+            iconScale.yScale = 1.0
+        }
+
         onClicked: {
+            iconScale.xScale = 1.1
+            iconScale.yScale = 1.1
+            iconScale.xScale = 1.23
+            iconScale.yScale = 1.23
             if (mouse.button === Qt.RightButton)
                 control.rightClicked(mouse)
             else
@@ -94,6 +136,8 @@ Item {
         }
 
         onPressed: {
+            iconScale.xScale = 1.0
+            iconScale.yScale = 1.0
             control.pressed(mouse)
             popupTips.hide()
         }
