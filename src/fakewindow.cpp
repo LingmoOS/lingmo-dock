@@ -29,6 +29,7 @@
 #include <QTimer>
 
 #include <KWindowSystem>
+#include <KX11Extras>
 
 // X11
 #include <NETWM>
@@ -86,7 +87,7 @@ bool FakeWindow::event(QEvent *e)
             m_delayedMouseTimer.start();
         }
     } else if (e->type() == QEvent::Show) {
-        KWindowSystem::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::SkipSwitcher);
+        KX11Extras::setState(winId(), NET::SkipTaskbar | NET::SkipPager | NET::SkipSwitcher);
     }
 
     return QQuickView::event(e);

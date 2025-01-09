@@ -1,8 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
-import QtGraphicalEffects 1.0
+import Qt5Compat.GraphicalEffects
 import Lingmo.Dock 1.0
-import LingmoUI 1.0 as LingmoUI
+import LingmoUI.CompatibleModule 3.0 as LingmoUI
 
 Item {
     id: control
@@ -86,14 +86,14 @@ Item {
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
         drag.axis: Drag.XAndYAxis
 
-        onClicked: {
+        onClicked: function(mouse) {
             if (mouse.button === Qt.RightButton)
                 control.rightClicked(mouse)
             else
                 control.clicked(mouse)
         }
 
-        onPressed: {
+        onPressed: function(mouse) {
             control.pressed(mouse)
             popupTips.hide()
         }
@@ -113,7 +113,7 @@ Item {
             control.positionChanged()
         }
 
-        onPressAndHold : control.pressAndHold(mouse)
+        onPressAndHold : function(mouse) {control.pressAndHold(mouse)}
         onReleased: {
             drag.target = null
             control.released()

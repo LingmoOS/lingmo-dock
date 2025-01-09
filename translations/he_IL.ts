@@ -4,27 +4,27 @@
 <context>
     <name>AppItem</name>
     <message>
-        <location filename="../qml/AppItem.qml" line="73"/>
+        <location filename="../qml/AppItem.qml" line="76"/>
         <source>Open</source>
         <translation>פתח</translation>
     </message>
     <message>
-        <location filename="../qml/AppItem.qml" line="85"/>
+        <location filename="../qml/AppItem.qml" line="88"/>
         <source>Unpin</source>
         <translation>בטל הצמדה</translation>
     </message>
     <message>
-        <location filename="../qml/AppItem.qml" line="85"/>
+        <location filename="../qml/AppItem.qml" line="88"/>
         <source>Pin</source>
         <translation>הצמד</translation>
     </message>
     <message>
-        <location filename="../qml/AppItem.qml" line="94"/>
+        <location filename="../qml/AppItem.qml" line="97"/>
         <source>Close window</source>
         <translation>סגור חלון</translation>
     </message>
     <message>
-        <location filename="../qml/AppItem.qml" line="95"/>
+        <location filename="../qml/AppItem.qml" line="98"/>
         <source>Close %1 windows</source>
         <translation>סגור %1 חלונות</translation>
     </message>
@@ -32,7 +32,7 @@
 <context>
     <name>ApplicationModel</name>
     <message>
-        <location filename="../src/applicationmodel.cpp" line="285"/>
+        <location filename="../src/applicationmodel.cpp" line="360"/>
         <source>Launcher</source>
         <translation>מפעיל יישומים</translation>
     </message>
@@ -40,17 +40,17 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="114"/>
+        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
         <translation>סל המיחזור</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="124"/>
+        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
         <translation>פתח</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="129"/>
+        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
         <translation>רוקן את סל המיחזור</translation>
     </message>

@@ -22,13 +22,14 @@
 
 #include <QTimer>
 #include <QDebug>
-#include <QX11Info>
+#include <QtGui/private/qtx11extras_p.h>
 #include <QWindow>
 #include <QScreen>
 
 #include <KWindowEffects>
 #include <KWindowSystem>
 #include <KWindowInfo>
+#include <KX11Extras>
 
 // X11
 #include <NETWM>
@@ -46,24 +47,24 @@ XWindowInterface *XWindowInterface::instance()
 XWindowInterface::XWindowInterface(QObject *parent)
     : QObject(parent)
 {
-    connect(KWindowSystem::self(), &KWindowSystem::windowAdded, this, &XWindowInterface::onWindowadded);
-    connect(KWindowSystem::self(), &KWindowSystem::windowRemoved, this, &XWindowInterface::windowRemoved);
-    connect(KWindowSystem::self(), &KWindowSystem::activeWindowChanged, this, &XWindowInterface::activeChanged);
+    connect(KX11Extras::self(), &KX11Extras::windowAdded, this, &XWindowInterface::onWindowadded);
+    connect(KX11Extras::self(), &KX11Extras::windowRemoved, this, &XWindowInterface::windowRemoved);
+    connect(KX11Extras::self(), &KX11Extras::activeWindowChanged, this, &XWindowInterface::activeChanged);
 }
 
 void XWindowInterface::enableBlurBehind(QWindow *view, bool enable, const QRegion &region)
 {
-    KWindowEffects::enableBlurBehind(view->winId(), enable, region);
+    KWindowEffects::enableBlurBehind(view, enable, region);
 }
 
 WId XWindowInterface::activeWindow()
 {
-    return KWindowSystem::activeWindow();
+    return KX11Extras::activeWindow();
 }
 
 void XWindowInterface::minimizeWindow(WId win)
 {
-    KWindowSystem::minimizeWindow(win);
+    KX11Extras::minimizeWindow(win);
 }
 
 void XWindowInterface::closeWindow(WId id)
@@ -74,7 +75,7 @@ void XWindowInterface::closeWindow(WId id)
 
 void XWindowInterface::forceActiveWindow(WId win)
 {
-    KWindowSystem::forceActiveWindow(win);
+    KX11Extras::forceActiveWindow(win);
 }
 
 QMap<QString, QVariant> XWindowInterface::requestInfo(quint64 wid)
@@ -94,7 +95,7 @@ QMap<QString, QVariant> XWindowInterface::requestInfo(quint64 wid)
     const QString winClass = QString(winfo.windowClassClass());
 
     result.insert("iconName", winClass.toLower());
-    result.insert("active", wid == KWindowSystem::activeWindow());
+    result.insert("active", wid == KX11Extras::activeWindow());
     result.insert("visibleName", winfo.visibleName());
     result.insert("id", winClass);
 
@@ -179,7 +180,7 @@ void XWindowInterface::setViewStruts(QWindow *view, DockSettings::Direction dire
         break;
     }
 
-    KWindowSystem::setExtendedStrut(view->winId(),
+    KX11Extras::setExtendedStrut(view->winId(),
                                     strut.left_width,   strut.left_start,   strut.left_end,
                                     strut.right_width,  strut.right_start,  strut.right_end,
                                     strut.top_width,    strut.top_start,    strut.top_end,
@@ -189,12 +190,12 @@ void XWindowInterface::setViewStruts(QWindow *view, DockSettings::Direction dire
 
 void XWindowInterface::clearViewStruts(QWindow *view)
 {
-    KWindowSystem::setExtendedStrut(view->winId(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+    KX11Extras::setExtendedStrut(view->winId(), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 }
 
 void XWindowInterface::startInitWindows()
 {
-    for (auto wid : KWindowSystem::self()->windows()) {
+    for (auto wid : KX11Extras::self()->windows()) {
         onWindowadded(wid);
     }
 }

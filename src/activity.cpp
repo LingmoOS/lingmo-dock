@@ -22,6 +22,8 @@
 
 #include <NETWM>
 #include <KWindowSystem>
+#include <KX11Extras>
+#include <KWindowInfo>
 
 static Activity *SELF = nullptr;
 
@@ -39,8 +41,8 @@ Activity::Activity(QObject *parent)
 {
     onActiveWindowChanged();
 
-    connect(KWindowSystem::self(), &KWindowSystem::activeWindowChanged, this, &Activity::onActiveWindowChanged);
-    connect(KWindowSystem::self(), static_cast<void (KWindowSystem::*)(WId)>(&KWindowSystem::windowChanged),
+    connect(KX11Extras::self(), &KX11Extras::activeWindowChanged, this, &Activity::onActiveWindowChanged);
+    connect(KX11Extras::self(), &KX11Extras::windowChanged,
             this, &Activity::onActiveWindowChanged);
 }
 
@@ -56,7 +58,7 @@ bool Activity::launchPad() const
 #include <QDebug>
 void Activity::onActiveWindowChanged()
 {
-    KWindowInfo info(KWindowSystem::activeWindow(),
+    KWindowInfo info(KX11Extras::activeWindow(),
                      NET::WMState | NET::WMVisibleName,
                      NET::WM2WindowClass);
 
@@ -65,7 +67,7 @@ void Activity::onActiveWindowChanged()
     if (DockSettings::self()->visibility() == DockSettings::IntellHide) {
         bool existsWindowMaximized = false;
 
-        for (WId wid : KWindowSystem::windows()) {
+        for (WId wid : KX11Extras::windows()) {
             KWindowInfo i(wid, NET::WMState, NET::WM2WindowClass);
 
             if (i.isMinimized() || i.hasState(NET::SkipTaskbar))

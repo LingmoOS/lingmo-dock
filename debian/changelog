@@ -1,3 +1,9 @@
+lingmo-dock (2.1.0) UNRELEASED; urgency=medium
+
+  * Migrate to Qt6
+
+ -- Elysia <c.elysia@foxmail.com>  Thu, 09 Jan 2025 17:53:38 +0800
+
 lingmo-dock (2.0.2) UNRELEASED; urgency=high
 
   * update <lingmo@lingmo.org>
@@ -27,7 +33,7 @@ lingmo-dock (1.1.0+1) UNRELEASED; urgency=high
   * LingmoOS <lingmoos@foxmail.com>
 
  -- Floating dream <lingmoos@foxmail.com>  Tue, 13 Sep 2023 23:00:03 +0800
- 
+
 lingmo-dock (1.0.0.0) UNRELEASED; urgency=high
 
   * LingmoOS <lingmoos@foxmail.com>
