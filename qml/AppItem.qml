@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import Lingmo.Dock 1.0
-import LingmoUI 1.0 as LingmoUI
+import LingmoUI.CompatibleModule 3.0 as LingmoUI
 
 DockItem {
     id: appItem
@@ -35,7 +35,7 @@ DockItem {
     onPressed: updateGeometry()
     onRightClicked: if (model.appId !== "lingmo-launcher") contextMenu.show()
 
-    onClicked: {
+    onClicked:function(mouse) {
         if (mouse.button === Qt.LeftButton)
             appModel.clicked(model.appId)
         else if (mouse.button === Qt.MiddleButton)
