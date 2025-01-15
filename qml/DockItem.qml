@@ -63,8 +63,8 @@ Item {
 
         visible: !dragStarted
 
-        layer.enabled: true
-        layer.smooth: true
+        enabled: true
+        smooth: true
 
         transform: Scale {
             id: iconScale

@@ -1,3 +1,10 @@
+lingmo-dock (2.8.0) UNRELEASED; urgency=high
+
+  [Lingmo OS Team]
+  * Optimize animation curves <lingmo@lingmo.org>
+
+ -- Lingmo OS Team <lingmo@lingmo.org>  Wed, 15 Jan 2025 22:00:00 +0800
+
 lingmo-dock (2.0.2) UNRELEASED; urgency=high
 
   * update <lingmo@lingmo.org>
