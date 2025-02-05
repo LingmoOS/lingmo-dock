@@ -2,12 +2,12 @@
 #include <memory>
 /**
  * @brief The Singleton class template.
- * 使用 std::unique_ptr 自动管理单例实例的生命周期。
+ * 使用 std::shared_ptr 自动管理单例实例的生命周期。
  */
 template <typename T>
 class Singleton {
 public:
-    static std::shared_ptr<T>& getInstance()
+    static std::shared_ptr<T> getInstance()
     {
         static std::shared_ptr<T> instance(new T());
         return instance;
@@ -23,7 +23,7 @@ private:                                         \
     friend class Singleton<Class>;               \
                                                  \
 public:                                          \
-    static std::shared_ptr<Class>& getInstance() \
+    static std::shared_ptr<Class> getInstance() \
     {                                            \
         return Singleton<Class>::getInstance();  \
     }                                            \
