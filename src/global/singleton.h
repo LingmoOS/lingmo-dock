@@ -12,7 +12,6 @@ public:
         static std::shared_ptr<T> instance(new T());
         return instance;
     }
-protected:
     // 保护构造函数，防止外部构造
     Singleton() = default;
     ~Singleton() = default;
