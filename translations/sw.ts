@@ -40,19 +40,16 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
-        <translation>Takataka</translation>
+        <translation type="vanished">Takataka</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>Fungua</translation>
+        <translation type="vanished">Fungua</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
-        <translation>Tupa takataka</translation>
+        <translation type="vanished">Tupa takataka</translation>
     </message>
 </context>
 </TS>

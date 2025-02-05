@@ -25,16 +25,16 @@
 
 ApplicationModel::ApplicationModel(QObject *parent)
     : QAbstractListModel(parent)
-    , m_iface(XWindowInterface::instance())
+    , m_iface(XWindowInterface::getInstance())
     , m_sysAppMonitor(SystemAppMonitor::self())
 {
-    connect(m_iface, &XWindowInterface::windowAdded, this, &ApplicationModel::onWindowAdded);
-    connect(m_iface, &XWindowInterface::windowRemoved, this, &ApplicationModel::onWindowRemoved);
-    connect(m_iface, &XWindowInterface::activeChanged, this, &ApplicationModel::onActiveChanged);
+    connect(m_iface.get(), &AbstractWindowInterface::windowAdded, this, &ApplicationModel::onWindowAdded);
+    connect(m_iface.get(), &XWindowInterface::windowRemoved, this, &ApplicationModel::onWindowRemoved);
+    connect(m_iface.get(), &XWindowInterface::activeChanged, this, &ApplicationModel::onActiveChanged);
 
     initPinnedApplications();
 
-    QTimer::singleShot(100, m_iface, &XWindowInterface::startInitWindows);
+    QTimer::singleShot(100, m_iface.get(), &XWindowInterface::startInitWindows);
 }
 
 int ApplicationModel::rowCount(const QModelIndex &parent) const
@@ -220,8 +220,8 @@ void ApplicationModel::closeAllByAppId(const QString &appId)
     if (!item)
         return;
 
-    for (quint64 wid : item->wids) {
-        m_iface->closeWindow(wid);
+    for (const auto & wid : item->wids) {
+        m_iface->requestClose(wid);
     }
 }
 
@@ -272,7 +272,7 @@ void ApplicationModel::updateGeometries(const QString &id, QRect rect)
     if (!item)
         return;
 
-    for (quint64 id : item->wids) {
+    for (const auto & id : item->wids) {
         m_iface->setIconGeometry(id, rect);
     }
 }
@@ -292,10 +292,10 @@ void ApplicationModel::move(int from, int to)
     endMoveRows();
 }
 
-ApplicationItem *ApplicationModel::findItemByWId(quint64 wid)
+ApplicationItem *ApplicationModel::findItemByWId(const WindowId& wid)
 {
     for (ApplicationItem *item : m_appItems) {
-        for (quint64 winId : item->wids) {
+        for (const auto & winId : item->wids) {
             if (winId == wid)
                 return item;
         }
@@ -448,10 +448,10 @@ void ApplicationModel::handleDataChangedFromItem(ApplicationItem *item)
     }
 }
 
-void ApplicationModel::onWindowAdded(quint64 wid)
+void ApplicationModel::onWindowAdded(WindowId wid)
 {
-    QMap<QString, QVariant> info = m_iface->requestInfo(wid);
-    const QString id = info.value("id").toString();
+    auto info = m_iface->requestInfo(wid);
+    const QString id = info.appName();
 
     // Skip...
     if (id == "lingmo-launcher")
@@ -464,7 +464,7 @@ void ApplicationModel::onWindowAdded(quint64 wid)
     if (!desktopPath.isEmpty() && desktopItem != nullptr) {
         desktopItem->wids.append(wid);
         // Need to update application active status.
-        desktopItem->isActive = info.value("active").toBool();
+        desktopItem->isActive = info.isActive();
 
         if (desktopItem->id != id) {
             desktopItem->id = id;
@@ -479,7 +479,7 @@ void ApplicationModel::onWindowAdded(quint64 wid)
             if (item->id == id) {
                 item->wids.append(wid);
                 // Need to update application active status.
-                item->isActive = info.value("active").toBool();
+                item->isActive = info.isActive();
                 handleDataChangedFromItem(item);
             }
         }
@@ -487,11 +487,11 @@ void ApplicationModel::onWindowAdded(quint64 wid)
     // New item needs to be added.
     else {
         beginInsertRows(QModelIndex(), rowCount(), rowCount());
-        ApplicationItem *item = new ApplicationItem;
+        auto *item = new ApplicationItem;
         item->id = id;
-        item->iconName = info.value("iconName").toString();
-        item->visibleName = info.value("visibleName").toString();
-        item->isActive = info.value("active").toBool();
+        item->iconName = info.icon().name();
+        item->visibleName = info.appName();
+        item->isActive = info.isActive();
         item->wids.append(wid);
 
         if (!desktopPath.isEmpty()) {
@@ -510,7 +510,7 @@ void ApplicationModel::onWindowAdded(quint64 wid)
     }
 }
 
-void ApplicationModel::onWindowRemoved(quint64 wid)
+void ApplicationModel::onWindowRemoved(WindowId wid)
 {
     ApplicationItem *item = findItemByWId(wid);
 
@@ -543,7 +543,7 @@ void ApplicationModel::onWindowRemoved(quint64 wid)
     }
 }
 
-void ApplicationModel::onActiveChanged(quint64 wid)
+void ApplicationModel::onActiveChanged(WindowId wid)
 {
     // Using this method will cause the listview scrollbar to reset.
     // beginResetModel();

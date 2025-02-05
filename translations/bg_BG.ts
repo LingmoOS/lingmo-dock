@@ -40,19 +40,16 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
-        <translation>Кошче</translation>
+        <translation type="vanished">Кошче</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>Отваряне</translation>
+        <translation type="vanished">Отваряне</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
-        <translation>Изпразване на кошчето</translation>
+        <translation type="vanished">Изпразване на кошчето</translation>
     </message>
 </context>
 </TS>

@@ -40,19 +40,8 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
-        <source>Trash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>විවෘත කරන්න</translation>
-    </message>
-    <message>
-        <location filename="../qml/main.qml" line="158"/>
-        <source>Empty Trash</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">විවෘත කරන්න</translation>
     </message>
 </context>
 </TS>

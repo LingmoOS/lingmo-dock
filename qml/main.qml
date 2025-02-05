@@ -1,10 +1,10 @@
 import QtQuick 2.12
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
-import Qt5Compat.GraphicalEffects
+import LingmoUI.GraphicalEffects
 
 import Lingmo.Dock 1.0
-import LingmoUI.CompatibleModule 3.0 as LingmoUI
+import LingmoUI.CompatibleModule as LingmoUI
 
 Item {
     id: root

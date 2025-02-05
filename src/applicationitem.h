@@ -20,6 +20,8 @@
 #ifndef APPLICATIONITEM_H
 #define APPLICATIONITEM_H
 
+#include "wm/windowinfowrap.h"
+
 #include <QtCore>
 
 class ApplicationItem
@@ -34,7 +36,7 @@ public:
     QString desktopPath;
     QString exec;
 
-    QList<quint64> wids;
+    QList<Lingmo::WindowSystem::WindowId> wids;
 
     int currentActive = 0;
     bool isActive = false;
