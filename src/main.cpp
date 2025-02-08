@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     if (!QDBusConnection::sessionBus().registerService("com.lingmo.Dock")) {
+        qDebug() << "Service already registered or dbus not available!";
         return -1;
     }
 
