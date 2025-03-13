@@ -17,6 +17,12 @@
 int main(int argc, char *argv[]) {
   QApplication app(argc, argv);
 
+  // Set basic application information
+  app.setOrganizationName("Lingmo");
+  app.setOrganizationDomain("lingmo.org");
+  app.setApplicationName("lingmo-dock");
+  app.setWindowIcon(QIcon::fromTheme("lingmo-dock"));
+
   if (!QDBusConnection::sessionBus().registerService("com.lingmo.Dock")) {
     return -1;
   }
