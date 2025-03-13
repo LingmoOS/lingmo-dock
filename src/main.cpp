@@ -1,59 +1,45 @@
 /*
- * Copyright (C) 2021 LingmoOS Team.
+ * SPDX-FileCopyrightText: 2021 rekols <revenmartin@gmail.com>
+ * SPDX-FileCopyrightText: 2024 Elysia <elysia@lingmo.org>
  *
- * Author:     rekols <revenmartin@gmail.com>
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
 #include <QApplication>
+#include <QDBusConnection>
+#include <QLocale>
 #include <QQmlApplicationEngine>
 #include <QQuickView>
 #include <QTranslator>
-#include <QLocale>
-#include <QDBusConnection>
 
-#include "applicationmodel.h"
 #include "mainwindow.h"
 
-int main(int argc, char *argv[])
-{
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
-    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
-    QApplication app(argc, argv);
+int main(int argc, char *argv[]) {
+  QApplication app(argc, argv);
 
-    if (!QDBusConnection::sessionBus().registerService("com.lingmo.Dock")) {
-        return -1;
+  if (!QDBusConnection::sessionBus().registerService("com.lingmo.Dock")) {
+    return -1;
+  }
+
+  qmlRegisterType<DockSettings>("Lingmo.Dock", 1, 0, "DockSettings");
+
+  QString qmFilePath = QString("%1/%2.qm")
+                           .arg("/usr/share/lingmo-dock/translations/")
+                           .arg(QLocale::system().name());
+  if (QFile::exists(qmFilePath)) {
+    QTranslator *translator = new QTranslator(QApplication::instance());
+    if (translator->load(qmFilePath)) {
+      QGuiApplication::installTranslator(translator);
+    } else {
+      translator->deleteLater();
     }
+  }
 
-    qmlRegisterType<DockSettings>("Lingmo.Dock", 1, 0, "DockSettings");
+  MainWindow w;
 
-    QString qmFilePath = QString("%1/%2.qm").arg("/usr/share/lingmo-dock/translations/").arg(QLocale::system().name());
-    if (QFile::exists(qmFilePath)) {
-        QTranslator *translator = new QTranslator(QApplication::instance());
-        if (translator->load(qmFilePath)) {
-            QGuiApplication::installTranslator(translator);
-        } else {
-            translator->deleteLater();
-        }
-    }
+  if (!QDBusConnection::sessionBus().registerObject("/Dock", &w)) {
+    return -1;
+  }
 
-    MainWindow w;
-
-    if (!QDBusConnection::sessionBus().registerObject("/Dock", &w)) {
-        return -1;
-    }
-
-    return app.exec();
+  return app.exec();
 }
