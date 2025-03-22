@@ -75,7 +75,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 qt_add_resources(${PROJECT_NAME} "${PROJECT_NAME}_res"
     PREFIX "/"
-    FILES ${resource_files}
+    FILES ${resource_files} ${qml_files}
 )
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
