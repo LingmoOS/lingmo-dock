@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.18)
 
 set(PROJECT_NAME lingmo-dock)
 project(${PROJECT_NAME})
@@ -14,44 +14,9 @@ find_package(Qt6 CONFIG REQUIRED Widgets DBus Gui Concurrent LinguistTools Quick
 
 find_package(KF6WindowSystem REQUIRED)
 
-set(SRCS
-    src/applicationitem.h
-    src/applicationmodel.cpp
-    src/docksettings.cpp
-    src/iconthemeimageprovider.cpp
-    src/main.cpp
-    src/mainwindow.cpp
-    src/systemappmonitor.cpp
-    src/systemappitem.cpp
-    src/processprovider.cpp
-    src/trashmanager.cpp
-    src/utils.cpp
-    src/xwindowinterface.cpp
-    src/activity.cpp
+find_package(LingmoLogger REQUIRED)
 
-    src/fakewindow.cpp
-)
-
-set(RESOURCES
-    resources.qrc
-)
-
-qt_add_dbus_adaptor(DBUS_SOURCES
-                     src/com.lingmo.Dock.xml
-                     src/mainwindow.h MainWindow)
-set_source_files_properties(${DBUS_SOURCES} PROPERTIES SKIP_AUTOGEN ON)
-
-add_executable(${PROJECT_NAME} ${SRCS} ${DBUS_SOURCES} ${RESOURCES})
-target_link_libraries(${PROJECT_NAME} PRIVATE
-        Qt6::Core
-        Qt6::Widgets
-        Qt6::Quick
-        Qt6::QuickControls2
-        Qt6::GuiPrivate
-        Qt6::Concurrent
-        Qt6::DBus
-        KF6::WindowSystem
-)
+add_subdirectory(src)
 
 file(GLOB TS_FILES translations/*.ts)
 foreach(filepath ${TS_FILES})
@@ -62,6 +27,5 @@ qt_create_translation(QM_FILES ${CMAKE_CURRENT_SOURCE_DIR} ${ts_files_replaced})
 
 add_custom_target(translations ALL DEPENDS ${QM_FILES} SOURCES ${TS_FILES})
 
-install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${QM_FILES} DESTINATION /usr/share/${PROJECT_NAME}/translations)
 install(FILES lingmo-dock-list.conf DESTINATION /etc)

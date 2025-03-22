@@ -35,8 +35,8 @@
 #include <KWindowEffects>
 #include <KX11Extras>
 
-MainWindow::MainWindow(QQuickView *parent)
-    : QQuickView(parent)
+MainWindow::MainWindow(QQmlEngine *engine, QWindow* parent)
+    : QQuickView(engine, parent)
     , m_activity(Activity::self())
     , m_settings(DockSettings::self())
     , m_appModel(new ApplicationModel)
@@ -46,6 +46,7 @@ MainWindow::MainWindow(QQuickView *parent)
     , m_showTimer(new QTimer(this))
     , m_hideTimer(new QTimer(this))
 {
+    // DBus Interface
     new DockAdaptor(this);
 
     installEventFilter(this);
@@ -57,11 +58,11 @@ MainWindow::MainWindow(QQuickView *parent)
     // KWindowSystem::setOnDesktop(winId(), NET::OnAllDesktops);
     KX11Extras::setType(winId(), NET::Dock);
 
-    engine()->rootContext()->setContextProperty("appModel", m_appModel);
-    engine()->rootContext()->setContextProperty("process", new ProcessProvider);
-    engine()->rootContext()->setContextProperty("Settings", m_settings);
-    engine()->rootContext()->setContextProperty("mainWindow", this);
-    engine()->rootContext()->setContextProperty("trash", m_trashManager);
+    this->engine()->rootContext()->setContextProperty("appModel", m_appModel);
+    this->engine()->rootContext()->setContextProperty("process", new ProcessProvider);
+    this->engine()->rootContext()->setContextProperty("Settings", m_settings);
+    this->engine()->rootContext()->setContextProperty("mainWindow", this);
+    this->engine()->rootContext()->setContextProperty("trash", m_trashManager);
 
     setSource(QUrl(QStringLiteral("qrc:/qml/main.qml")));
     setScreen(qApp->primaryScreen());
