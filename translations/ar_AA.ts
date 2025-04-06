@@ -32,7 +32,7 @@
 <context>
     <name>ApplicationModel</name>
     <message>
-        <location filename="../src/applicationmodel.cpp" line="360"/>
+        <location filename="../src/applicationmodel.cpp" line="361"/>
         <source>Launcher</source>
         <translation>المُشَغِّل</translation>
     </message>

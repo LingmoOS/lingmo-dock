@@ -22,6 +22,7 @@
 
 #include <QQuickView>
 #include <QTimer>
+#include <QQmlEngine>
 
 #include "activity.h"
 #include "docksettings.h"
@@ -38,7 +39,8 @@ class MainWindow : public QQuickView
     Q_PROPERTY(int style READ style NOTIFY styleChanged)
 
 public:
-    explicit MainWindow(QQuickView *parent = nullptr);
+    //explicit MainWindow(QQuickView *parent = nullptr);
+    explicit MainWindow(QQmlEngine *engine, QWindow* parent = nullptr);
     ~MainWindow();
 
     // DBus interface
