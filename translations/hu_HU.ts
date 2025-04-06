@@ -40,19 +40,16 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
-        <translation>Kuka</translation>
+        <translation type="vanished">Kuka</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>Megnyitás</translation>
+        <translation type="vanished">Megnyitás</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
-        <translation>Kuka ürítése</translation>
+        <translation type="vanished">Kuka ürítése</translation>
     </message>
 </context>
 </TS>

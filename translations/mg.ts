@@ -40,19 +40,16 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
-        <translation>Tsy ilaina</translation>
+        <translation type="vanished">Tsy ilaina</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>Sokafana</translation>
+        <translation type="vanished">Sokafana</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
-        <translation>Tsy misy n&apos;inona n&apos;inona</translation>
+        <translation type="vanished">Tsy misy n&apos;inona n&apos;inona</translation>
     </message>
 </context>
 </TS>

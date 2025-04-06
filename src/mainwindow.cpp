@@ -300,7 +300,7 @@ void MainWindow::updateViewStruts()
     }
 
     if (m_settings->visibility() == DockSettings::AlwaysShow || m_activity->launchPad()) {
-        XWindowInterface::instance()->setViewStruts(this, m_settings->direction(), geometry(), compositing);
+        XWindowInterface::getInstance()->setViewStruts(*this, m_settings->direction(), geometry(), compositing);
     } else {
         clearViewStruts();
     }
@@ -308,7 +308,7 @@ void MainWindow::updateViewStruts()
 
 void MainWindow::clearViewStruts()
 {
-    XWindowInterface::instance()->clearViewStruts(this);
+    XWindowInterface::getInstance()->clearViewStruts(this);
 }
 
 void MainWindow::createFakeWindow()

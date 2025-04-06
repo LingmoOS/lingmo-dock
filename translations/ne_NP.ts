@@ -40,19 +40,16 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
-        <translation>रद्दी टोकरी</translation>
+        <translation type="vanished">रद्दी टोकरी</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>खोल्ने</translation>
+        <translation type="vanished">खोल्ने</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
-        <translation>रद्दी खाली गर्ने</translation>
+        <translation type="vanished">रद्दी खाली गर्ने</translation>
     </message>
 </context>
 </TS>

@@ -40,19 +40,16 @@
 <context>
     <name>main</name>
     <message>
-        <location filename="../qml/main.qml" line="118"/>
         <source>Trash</source>
-        <translation>Smietnica</translation>
+        <translation type="vanished">Smietnica</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="153"/>
         <source>Open</source>
-        <translation>Adkryć</translation>
+        <translation type="vanished">Adkryć</translation>
     </message>
     <message>
-        <location filename="../qml/main.qml" line="158"/>
         <source>Empty Trash</source>
-        <translation>Ačyscić smietnicu</translation>
+        <translation type="vanished">Ačyscić smietnicu</translation>
     </message>
 </context>
 </TS>

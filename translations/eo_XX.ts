@@ -37,22 +37,4 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
-<context>
-    <name>main</name>
-    <message>
-        <location filename="../qml/main.qml" line="118"/>
-        <source>Trash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/main.qml" line="153"/>
-        <source>Open</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../qml/main.qml" line="158"/>
-        <source>Empty Trash</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
 </TS>
